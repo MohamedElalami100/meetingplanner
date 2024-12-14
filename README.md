@@ -301,21 +301,17 @@ Un test pour le contrôleur `RoomController` pour vérifier que l'API retourne u
 
 ```java
 @Test
-void testGetBestRoomWithAvailableHours_ShouldReturnRoomWithHours() throws Exception {
-    // Arrange
-    when(getBestRoomWithAvailableHoursUseCase.execute("SPEC", 10, LocalDate.of(2024, 12, 1)))
-        .thenReturn(new RoomWithAvailableHoursDto("Room A", 15, List.of("Whiteboard", "Projector"), List.of("9", "10", "11")));
-
-    // Act & Assert
-    mockMvc.perform(get("/api/rooms/best-room-with-available-hours")
-            .param("meetingType", "SPEC")
-            .param("requiredCapacity", "10")
-            .param("meetingDate", "2024-12-01"))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.name").value("Room A"))
-            .andExpect(jsonPath("$.capacity").value(15))
-            .andExpect(jsonPath("$.roomEquipments[0]").value("Whiteboard"))
-            .andExpect(jsonPath("$.availableHours[0]").value("9"));
+void testGetBestRoomWithAvailableHours_ShouldReturnRoomDetails() throws Exception {
+   mockMvc.perform(get("/api/rooms/best-room-with-available-hours")
+                        .param("meetingType", "SPEC")
+                        .param("requiredCapacity", "10")
+                        .param("meetingDate", "2024-12-01")
+                        .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name").value("Conference Room A"))
+                .andExpect(jsonPath("$.capacity").value(20))
+                .andExpect(jsonPath("$.roomEquipments[0]").value("Projector"))
+                .andExpect(jsonPath("$.availableHours[0]").value("8h00-9h00"));
 }
 ```
 
