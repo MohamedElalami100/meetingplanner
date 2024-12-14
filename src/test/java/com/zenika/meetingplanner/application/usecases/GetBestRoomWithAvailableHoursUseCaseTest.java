@@ -66,7 +66,6 @@ class GetBestRoomWithAvailableHoursUseCaseTest {
         RoomWithAvailableHoursDto responseDto = getBestRoomWithAvailableHoursUseCase.execute("SPEC", 10, meetingDate);
 
         // Assert
-        System.out.println(responseDto.getAvailableHours());
         assertNotNull(responseDto);
         assertEquals("Conference Room A", responseDto.getName());
         assertEquals(15, responseDto.getCapacity());
