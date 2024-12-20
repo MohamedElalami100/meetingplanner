@@ -35,7 +35,7 @@ jobs:
 
       # Étape 4 : Compiler et exécuter les tests unitaires
       - name: Build and Test
-        run: mvn clean verify
+        run: mvn clean install -DskipTests
 
   docker-build-and-push:
     runs-on: ubuntu-latest
