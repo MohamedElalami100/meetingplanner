@@ -48,7 +48,7 @@ jobs:
 
       # Étape 2 : Construire l'image Docker
       - name: Build Docker Image
-        run: docker build -t elalamimohamed/meetingplanner-:latest .
+        run: docker build -t elalamimohamed/meetingplanner:latest .
 
       # Étape 3 : Se connecter à Docker Hub
       - name: Log in to Docker Hub
